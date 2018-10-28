@@ -1,18 +1,20 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class = "header">
+<div class="container">
+  <div class="header">
     <h1>{{ dinosaur.name }}</h1>
-</div>
-<div class="content">
-  <div class="details">
-      <div class="imgwrapper"><img src="../static/img/{{ dinosaur.img }}"/></div>
+  </div>
+
+  <div class="content">
+    <div class="details">
+      <div class="imgwrapper"><img src="../static/images/{{ dinosaur.img }}"/></div>
       <div class="info">
-          <p>Name of Dinosaur: {{ dinosaur.name }}</p>
-          <p>Type of Dinosaur: <a href="/dinotype/{{dinosaur.dinotype}}">{{ dinosaur.dinotype }}</a></p>
-          <p>When it lived: <a href="/timeperiod/{{dinosaur.timeperiod}}">{{ dinosaur.timeperiod }}</a></p>
-          <p>Where it lived: <a href="/continent/{{dinosaur.continent}}">{{ dinosaur.continent }}</a></p>
-          <p>About the Dinosaur: {{ dinosaur.desc }}</p>
+        <p><span>Type of Dinosaur:</span> <a href="/dino_type/{{dinosaur.dino_type}}">{{ dinosaur.dino_type }}</a></p>
+        <p><span>When it lived:</span> <a href="/time_period/{{dinosaur.time_period}}">{{ dinosaur.time_period }}</a></p>
+        <p><span>Where it lived:</span> <a href="/continent/{{dinosaur.continent}}">{{ dinosaur.continent }}</a></p>
+        <p><span>About {{ dinosaur.name }}:</span> {{ dinosaur.desc }}</p>
       </div>
+    </div>
   </div>
 </div>
 {% endblock content %}

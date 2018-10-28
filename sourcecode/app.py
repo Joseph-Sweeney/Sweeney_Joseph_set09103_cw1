@@ -4,10 +4,10 @@ app = Flask(__name__)
 
 
 class Dinosaur:
-    def __init__(self, name, dinotype, timeperiod, continent, desc, img):
+    def __init__(self, name, dino_type, time_period, continent, desc, img):
         self.name=name
-        self.dinotype=dinotype
-        self.timeperiod=timeperiod
+        self.dino_type=dino_type
+        self.time_period=time_period
         self.continent=continent
         self.desc=desc
         self.img=img
@@ -24,7 +24,7 @@ def loadDinosaurs():
 
     newdinosaurlist = []
     for item in jsondata:
-        newdinosaurlist.append(Dinosaur(item['name'], item['dinotype'], item['timeperiod'], item['continent'], item['desc'], item['img']))
+        newdinosaurlist.append(Dinosaur(item['name'], item['dino_type'], item['time_period'], item['continent'], item['desc'], item['img']))
     return newdinosaurlist
 
 dinosaurlist = loadDinosaurs()
@@ -34,19 +34,19 @@ def noPath():
 	return redirect(url_for('dinosaurs'))
 
 @app.route('/<filterItem>')
-def filterOptions(filterItem='dinotype'):
+def filterOptions(filterItem='dino_type'):
 	dinosaurlist = loadDinosaurs()
 	try:
-		return render_template('list.html', option=filterItem, title=filterItem, optionlist=getFilterList(filterItem))
+		return render_template('index.html', option=filterItem, title=filterItem, optionlist=getFilterList(filterItem))
 	except:
 		abort(404)
 
 @app.route('/<filterItem>/<name>')
-def filterResults(filterItem='timeperiod', name=None):
+def filterResults(filterItem='time_period', name=None):
 	Dinosaurlist = loadDinosaurs()
 	try:
 		optionlist = list(filter(lambda x: getattr(x,filterItem) == name, dinosaurlist))
-		return render_template('list.html', option=filterItem, dinosaurs='true', title=name, optionlist=optionlist)
+		return render_template('index.html', option=filterItem, dinosaurs='true', title=name, optionlist=optionlist)
 	except:
 		abort(404)
 
@@ -62,7 +62,7 @@ def dinosaur(name=None):
 @app.route('/dinosaurs')
 def dinosaurs():
 	dinosaurlist = loadDinosaurs()
-	return render_template('list.html',option='dinosaurs', dinosaurs='true', title='All', optionlist=dinosaurlist)
+	return render_template('index.html', option='dinosaurs', dinosaurs='true', title='All', optionlist=dinosaurlist)
 
 def getFilterList(filterOption):
 	dinosaurlist = loadDinosaurs()

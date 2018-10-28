@@ -1,9 +1,30 @@
-<div class = "header">
-    <h1>Dino Directory</h1>
+{% extends "layout.html" %}
+{% block content %}
+<div class="container-fluid text-center container">
+  <div class="row content">
+    <div class="col-sm-12 text-left">
+      {% if optionlist|length > 0 %}
+        <div class= "dinosaursContainer">
+          {% for item in optionlist %}
+            {%if dinosaurs == 'true' %}
+              <a href="/dinosaurs/{{ item.name }}">
+                  <img src="../static/images/{{item.img}}">
+                  <p>{{ item.name }}</p>
+              </a>
+            {% else %}
+              <a class="optionButton" href="/{{ option }}/{{ item }}">
+                  {{ item }}
+              </a>
+            {% endif %}
+          {% endfor %}
+        </div>
+      {% else %}
+        <p style="text-align: center">A {{ option }} called "{{ title }}" does not exist</p>
+        <a class="optionButton" href="/{{option}}">
+            Back to {{ option }} selection
+        </a>
+      {% endif %}
+    </div>
+  </div>
 </div>
-<div class="categories">
-    <a href='dinosaur'>All Dinosaurs</a>
-    <a href='dinotype'>Type of Dinosaur</a>
-    <a href='timeperiod'>When they lived</a>
-    <a href='continent'>Where they lived</a>
-</div>
+{% endblock content %}

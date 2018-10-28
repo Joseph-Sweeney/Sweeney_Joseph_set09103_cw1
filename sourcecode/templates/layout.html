@@ -25,36 +25,37 @@
     margin: 0;
   }
 
-  .dinosaursContainer{
+  .container {
+    max-width: 1024px;
+    margin: auto;
+  }
+
+  .dinosaursContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: flex-end;
   }
 
-  .dinosaursContainer a{
+  .dinosaursContainer a {
     width: 200px;
     margin: 20px;
     text-align: center;
   }
 
-  .imgwrapper{
-    flex-grow: 1;
-    min-width: 250px;
-    max-width: 25vw;
-    justify-self: center;
-    margin: 20px;
+  .dinosaursContainer {
+    text-decoration: underline;
   }
 
-  .imgWrapper img{
+  a img {
       width: 100%;
-      border-radius: 10px;
+      max-width: 100vw;
   }
 
-  a img{
-      width: 100%;
-      max-width: 50vw;
+  .details span {
+    font-weight: bold;
   }
+
   </style>
 </head>
 <body>
@@ -65,18 +66,14 @@
       </div>
       <ul class="nav navbar-nav">
         <li><a class="{{'active' if option == 'dinosaurs'}}" href="/dinosaurs">Home</a></li>
-        <li><a class="{{'active' if option == 'dinotype'}}" href="/dinotype">Types of Dinosaurs</a></li>
-        <li><a class="{{'active' if option == 'timeperiod'}}" href="/timeperiod">When they lived</a></li>
-        <li><a class="{{'active' if option == 'continent'}}" href="/continent">Where they lived</a></li>
+        <li><a class="{{'active' if option == 'dino_type'}}" href="/dino_type">Types of Dinosaurs</a></li>
+        <li><a class="{{'active' if option == 'time_period'}}" href="/time_period">When they lived</a></li>
+        <li><a class="{{'active' if option == 'continent'}}" href="/continent">Continent</a></li>
       </ul>
     </div>
   </nav>
 
   {% block content %}{% endblock %}
-
-<footer class="container-fluid text-center">
-  <p>Footer Text</p>
-</footer>
 
 </body>
 </html>
